@@ -1,0 +1,100 @@
+# Cloud Computing Mini Project Report
+
+## Title
+
+Serverless File Processing System using AWS EC2, S3, and Lambda
+
+## 1. Introduction
+
+This project demonstrates the implementation of a cloud-based system on Amazon Web Services (AWS) without using any traditional database. The solution uses EC2 for hosting a web interface, S3 for storage, and AWS Lambda for backend processing. The objective is to understand how event-driven and serverless services can replace databases for certain applications.
+
+## 2. Problem Statement
+
+To design a cloud system that can:
+
+* Accept files from users
+* Store them securely in cloud storage
+* Automatically process the files using cloud functions
+* Display processed results back to the user
+
+## 3. Services Used
+
+* Amazon EC2 – Hosting the web interface
+* Amazon S3 – Storing uploaded files
+* AWS Lambda – Processing files without a server
+* Amazon VPC – Networking
+* IAM & Security Groups – Security and access control
+
+## 4. System Architecture
+
+User → Internet → EC2 (Web Interface) → S3 (File Storage)
+↓
+Lambda (Auto Processing)
+
+## 5. Implementation Steps
+
+### 5.1 EC2 Setup
+
+An Ubuntu EC2 instance was launched and Apache was installed:
+
+```bash
+sudo apt update
+sudo apt install apache2 -y
+```
+
+A simple HTML upload page was hosted on the server.
+
+### 5.2 S3 Bucket Configuration
+
+An S3 bucket was created to store uploaded files. Versioning and public access blocking were enabled.
+
+### 5.3 Lambda Function Setup
+
+A Lambda function was created using Python to automatically process files uploaded to S3 (for example, image resizing or text extraction). The function was triggered using S3 Event Notifications.
+
+### 5.4 IAM Role Configuration
+
+An IAM role was attached to Lambda with permission to read from and write to the S3 bucket.
+
+### 5.5 Application Flow
+
+1. User uploads a file through the web page on EC2.
+2. File is stored in S3.
+3. S3 event triggers Lambda.
+4. Lambda processes the file and saves output back to S3.
+5. User can download the processed file.
+
+## 6. Security Measures
+
+* IAM roles instead of access keys
+* Private S3 bucket with controlled access
+* Security groups with least privilege
+
+## 7. Testing and Results
+
+Files uploaded through the web interface were successfully stored in S3 and processed automatically by the Lambda function. The output files were verified and downloaded.
+
+## 8. Conclusion
+
+This project proves that cloud-native serverless functions can replace traditional databases for event-driven processing tasks. The solution is scalable, cost-effective, and fully managed.
+
+## 9. Future Enhancements
+
+* Add CloudFront for faster file delivery
+* Add CloudWatch logs and alarms
+* Integrate email notification using SNS
+
+## 10. Repository Structure
+
+```
+aws-serverless-project/
+│── web/
+│   ├── upload.html
+│── lambda/
+│   ├── handler.py
+│── README.md
+```
+
+## 11. Resume Description
+
+Implemented a serverless file processing system on AWS using EC2, S3, and Lambda with event-driven automation, IAM-based security, and cloud-native storage, eliminating the need for traditional databases.
