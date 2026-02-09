@@ -95,6 +95,6 @@ aws-serverless-project/
 │── README.md
 ```
 
-## 11. Resume Description
+## 11.  Description
 
 Implemented a serverless file processing system on AWS using EC2, S3, and Lambda with event-driven automation, IAM-based security, and cloud-native storage, eliminating the need for traditional databases.
